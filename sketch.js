@@ -1,7 +1,6 @@
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
-const Constraint = Matter.Constraint;
 
 var engine, world;
 var particles=[];
@@ -17,22 +16,23 @@ function setup() {
     divisions.push(new Division(k,height-divisionHeight/2,10,divisionHeight))
   }
   for(var a=40;a<=width;a+=50){
-    plinkos.push(new Plinko(a,75,10))
+    plinkos.push(new Plinko(a,75))
   }
   for (var s=15;s<=width-10;s+=50){
-    plinkos.push(new Plinko(s,175,10))
+    plinkos.push(new Plinko(s,175))
   }
   for (var d=40;d<=width;d+=50){
-    plinkos.push(new Plinko(d,275,10))
+    plinkos.push(new Plinko(d,275))
   }
   for (var f=15;f<=width;f+=50){
-    plinkos.push(new Plinko(f,375,10))
+    plinkos.push(new Plinko(f,375))
   }
   ground=new Ground(240,790,480,20)
 }
 
 function draw() {
   background(0,0,0);
+  Engine.update(engine);
   if(frameCount%60===0){
     particles.push(new Particle(random(width/2-10,width/2+10),10,10))
   }
